@@ -7,7 +7,7 @@ calculate_time_left() {
 
     # Convert user input to 24-hour format
     user_input=$1
-    user_input=$(date -d "$user_input" +"%H:%M" -d 'today')
+    user_input=$(date -d "$user_input" +"%H:%M")
 
     # Calculate time difference in minutes
     time_diff=$(( $(date -d "$user_input" +%s) - $(date -d "$current_time" +%s) ))
