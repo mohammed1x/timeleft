@@ -9,8 +9,14 @@ calculate_time_left() {
     user_input=$1
     user_input=$(date -d "$user_input" +"%H:%M")
 
+    # Get today's date and time for user input
+    user_input_date=$(date -d "$user_input" +"%Y-%m-%d $user_input")
+
+    # Get current date and time
+    current_date=$(date +"%Y-%m-%d $current_time")
+
     # Calculate time difference in minutes
-    time_diff=$(( $(date -d "$user_input" +%s) - $(date -d "$current_time" +%s) ))
+    time_diff=$(( $(date -d "$user_input_date" +%s) - $(date -d "$current_date" +%s) ))
 
     # If the calculated time difference is negative, add 24 hours (86400 seconds)
     if [[ $time_diff -lt 0 ]]; then
