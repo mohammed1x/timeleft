@@ -5,8 +5,8 @@ calculate_time_left() {
     # Get current time in minutes since midnight
     current_time=$(date +"(%H*60)+%M")
 
-    # Convert user input to minutes since midnight using Python
-    user_input=$(python3 -c "from datetime import datetime, timedelta; print((datetime.strptime('$1', '%I:%M').hour * 60) + datetime.strptime('$1', '%I:%M').minute)")
+    # Convert user input to minutes since midnight
+    user_input=$(date -d "$1" +"(%H*60)+%M")
 
     # If the user input is in the past, add 24 hours (1440 minutes)
     if [[ $user_input -lt $current_time ]]; then
