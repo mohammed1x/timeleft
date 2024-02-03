@@ -9,13 +9,13 @@ calculate_time_left() {
     user_input=$1
     user_input=$(date -d "$user_input" +"(%H*60)+%M")
 
+    # If the user input is in the past, add 24 hours (1440 minutes)
+    if [[ $user_input -lt $current_time ]]; then
+        user_input=$((user_input + 1440))
+    fi
+
     # Calculate time difference in minutes
     time_diff=$((user_input - current_time))
-
-    # If the calculated time difference is negative, add 24 hours (1440 minutes)
-    if [[ $time_diff -lt 0 ]]; then
-        time_diff=$((time_diff + 1440))
-    fi
 
     # Convert time difference to hours and minutes
     hours=$((time_diff / 60))
